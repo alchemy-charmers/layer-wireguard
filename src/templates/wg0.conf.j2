@@ -1,0 +1,20 @@
+[Interface]
+Address = {{ address }}
+PrivateKey = {{ private_key }}
+ListenPort = {{ listen_port }}
+SaveConfig = true
+{%- if forward %}
+PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o {{ forward_dev }} -j MASQUERADE
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o {{ forward_dev }} -j MASQUERADE
+{% endif %}
+
+{% if peers -%}
+{% for peer in peers.values() -%}
+[Peer]
+PublicKey = {{ peer.publickey }}
+AllowedIPs = {{ peer.allowedips }}
+{%- if peer.endpoint %}
+Endpoint = {{ peer.endpoint }}
+{% endif %}
+{% endfor %}
+{% endif %}

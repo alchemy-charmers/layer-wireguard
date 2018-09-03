@@ -1,0 +1,3 @@
+{
+  "tests/unit/test_actions.py::TestActions::()::test_renew_cert": true
+}

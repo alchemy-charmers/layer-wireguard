@@ -1,0 +1,7 @@
+peer1:
+  publickey: "peer1key"
+  endpoint: "peer1endpoint"
+  allowedips: "peer1ips"
+peer2:
+  publickey: "peer2key"
+  allowedips: "peer2ips"

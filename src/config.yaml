@@ -1,0 +1,27 @@
+options:
+  peers:
+    type: string
+    default: ""
+    description: | 
+      base64 yaml file with peer options
+      See include-base64:// 
+  listen-port:
+    type: int
+    default: 15820
+    description: "UDP port to listen for peers on"
+  address:
+    type: string
+    default: "10.10.10.1/24"
+    description: "Interface address"
+  forward-ip:
+    type: boolean
+    default: True
+    description: "Forward packets for clients"
+  forward-dev:
+    type: string
+    default: "eth0"
+    description: "Device to forward packets on"
+  endpoint:
+    type: string
+    default: ""
+    description: "Public endpoint address and port"

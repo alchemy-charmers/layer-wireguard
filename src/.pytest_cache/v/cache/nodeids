@@ -1,0 +1,8 @@
+[
+  "tests/unit/test_libwireguard.py::TestLibwireguard::()::test_pytest",
+  "tests/unit/test_libwireguard.py::TestLibwireguard::()::test_wh",
+  "tests/unit/test_libwireguard.py::TestLibwireguard::()::test_gen_keys",
+  "tests/unit/test_libwireguard.py::TestLibwireguard::()::test_write_config",
+  "tests/unit/test_libwireguard.py::TestLibwireguard::()::test_enable_forward",
+  "tests/unit/test_libwireguard.py::TestLibwireguard::()::test_disable_forward"
+]

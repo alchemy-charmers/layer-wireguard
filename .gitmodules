@@ -1,0 +1,3 @@
+[submodule "layers/layer-version"]
+	path = layers/layer-version
+	url = git@github.com:chris-sanders/layer-version.git
