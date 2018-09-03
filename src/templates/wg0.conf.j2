@@ -16,5 +16,8 @@ AllowedIPs = {{ peer.allowedips }}
 {%- if peer.endpoint %}
 Endpoint = {{ peer.endpoint }}
 {% endif %}
+{%- if peer.persistentkeepalive %}
+PersistentKeepalive = {{ peer.persistentkeepalive }}
+{% endif %}
 {% endfor %}
 {% endif %}
