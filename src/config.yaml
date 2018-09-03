@@ -4,7 +4,12 @@ options:
     default: ""
     description: | 
       base64 yaml file with peer options
-      See include-base64:// 
+      See include-base64://
+      Availabel options
+        * allowedips - the allowed ip ranges for this peer
+        * publickey - the public key
+        * endpoint - peer ip and port X.X.X.X:PORT
+        * persistentkeepalive - optional keep alive in seconds
   listen-port:
     type: int
     default: 15820
