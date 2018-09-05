@@ -24,6 +24,8 @@ def configure_wireguard():
     host.service('enable', wh.service_name)
     host.service('start', wh.service_name)
     hookenv.open_port(wh.charm_config['listen-port'], protocol='UDP')
+    if wh.charm_config['forward-ip']:
+        wh.enable_forward()
     hookenv.status_set('active', '')
     set_flag('wireguard.configured')
 
@@ -37,3 +39,9 @@ def update_config():
        wh.charm_config.previous('listen-port') is not None:
         hookenv.close_port(wh.charm_config.previous('listen-port'), protocol='UDP')
         hookenv.open_port(wh.charm_config['listen-port'], protocol='UDP')
+    if wh.charm_config.changed('forward-ip') and\
+       wh.charm_config.previous('forward-ip') is not None:
+        if wh.charm_config['forward-ip']:
+            wh.enable_forward()
+        else:
+            wh.disable_forward()
