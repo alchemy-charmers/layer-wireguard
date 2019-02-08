@@ -1,6 +1,19 @@
-*.swp
-VERSION
-*.tox/
-*.pytest_cache/
-*__pycache__/
-*.pyc
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Log files
+*.log
+
+.tox/
+.coverage
+
+# vi
+.*.swp
+
+# pycharm
+.idea/
+
+# version data
+src/repo-info
