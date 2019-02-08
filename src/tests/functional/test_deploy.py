@@ -42,11 +42,28 @@ async def test_wireguard_deploy(model, series):
                        application_name='wireguard-{}'.format(series))
 
 
+async def test_deploy_haproxy(model):
+    await model.deploy('cs:~pirate-charmers/haproxy',
+                       series='bionic',
+                       )
+
+
 async def test_wireguard_status(apps, model):
     # Verifies status for all deployed series of the charm
     for app in apps:
         await model.block_until(lambda: app.status == 'active')
 
+
+async def test_add_relation(model, apps):
+    haproxy = model.applications['haproxy']
+    await model.block_until(lambda: haproxy.status == 'active')
+    port = 15821
+    for app in apps:
+        await app.set_config({'listen-port': str(port)})
+        port += 1
+        await app.add_relation('reverseproxy', 'haproxy:reverseproxy')
+        await model.block_until(lambda: haproxy.status == 'maintenance')
+        await model.block_until(lambda: haproxy.status == 'active')
 
 # async def test_example_action(units):
 #     for unit in units:
