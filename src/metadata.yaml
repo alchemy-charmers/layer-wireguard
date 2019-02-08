@@ -16,7 +16,7 @@ series:
 #     interface: interface-name
 requires:
   reverseproxy:
-    reverseproxy: reverseproxy
+    interface: reverseproxy
 # peers:
 #   peer-relation:
 #     interface: interface-name
