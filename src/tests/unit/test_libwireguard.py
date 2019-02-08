@@ -73,4 +73,3 @@ class TestLibwireguard():
             settings = sysctl.read()
         assert "#net.ipv4.ip_forward=1" in settings
         assert "#net.ipv6.conf.all.forwarding=1" in settings
-
