@@ -1,8 +1,10 @@
-from charms.reactive import when, when_not, set_flag
+from charms.reactive import when, when_not, set_flag, endpoint_from_name
 from charmhelpers import fetch
 from charmhelpers.core import hookenv, host
 
 from libwireguard import WireguardHelper
+
+import socket
 
 wh = WireguardHelper()
 
@@ -45,3 +47,20 @@ def update_config():
             wh.enable_forward()
         else:
             wh.disable_forward()
+
+
+@when('reverseproxy.ready')
+@when_not('reverseproxy.configured')
+def configure_reverseproxy():
+    interface = endpoint_from_name('reverseproxy')
+    if wh.charm_config['proxy-via-hostname']:
+        internal_host = socket.getfqdn()
+    else:
+        internal_host = hookenv.unit_public_ip()
+    config = {
+        'mode': 'tcp',
+        'external_port': wh.charm_config['listen-port'],
+        'internal_host': internal_host,
+        'internal_port': wh.charm_config['listen-port'],
+    }
+    interface.configure(config)

@@ -26,7 +26,12 @@ options:
     type: string
     default: "eth0"
     description: "Device to forward packets on"
-  endpoint:
-    type: string
-    default: ""
-    description: "Public endpoint address and port"
+  proxy-via-hostname:
+    type: boolean
+    default: false
+    description: "If true use fqdn with the reverse proxy, if false use ip address"
+# Is this even used, what was it meant for?
+#  endpoint:
+#    type: string
+#    default: ""
+#    description: "Public endpoint address and port"
