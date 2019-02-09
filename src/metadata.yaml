@@ -14,9 +14,9 @@ series:
 # provides:
 #   provides-relation:
 #     interface: interface-name
-requires:
-  reverseproxy:
-    interface: reverseproxy
+# requires:
+#   reverseproxy:
+#     interface: reverseproxy
 # peers:
 #   peer-relation:
 #     interface: interface-name
