@@ -1,0 +1,2 @@
+get-config:
+  description: "Return the config parameters for the server"

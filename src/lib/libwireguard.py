@@ -16,6 +16,7 @@ class WireguardHelper():
         self.cfg_dir = "/etc/wireguard"
         self.cfg_file = self.cfg_dir + '/wg0.conf'
         self.private_key_file = self.key_dir + '/privatekey'
+        self.public_key_file = self.key_dir + '/publickey'
         self.service_name = 'wg-quick@wg0'
         self.sysctl_file = '/etc/sysctl.d/99-sysctl.conf'
 
@@ -82,3 +83,10 @@ class WireguardHelper():
                     print('#' + line, end='')
                 else:
                     print(line, end='')
+
+    def get_settings(self):
+        with open(self.public_key_file, 'r') as key:
+            public_key = key.read().strip('\n')
+        port = self.charm_config['listen-port'],
+        ip = hookenv.unit_public_ip()
+        return public_key, ip, port
