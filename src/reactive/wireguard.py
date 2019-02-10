@@ -20,6 +20,7 @@ def install_wireguard():
 
 
 @when_not('wireguard.configured')
+@when('wireguard.installed')
 def configure_wireguard():
     hookenv.status_set('maintenance', 'Generating config')
     wh.write_config()
