@@ -17,7 +17,7 @@ This charm is in initial development and is not feature complete.
 
 To deploy:
 
-    juju deploy cs:~chris.sanders/wireguard
+    juju deploy cs:~pirate-charmers/wireguard
 
 By default the charm sets up as a server, enabling routing of traffic. The
 device for the routing traffic defaults to eth0 and can be set with the
