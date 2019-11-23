@@ -33,7 +33,7 @@ class WireguardHelper():
         with open(self.private_key_file, 'r') as key:
             private_key = key.read().strip('\n')
         peers_string = base64.b64decode(self.charm_config['peers'])
-        peers_yaml = yaml.load(peers_string)
+        peers_yaml = yaml.safe_load(peers_string)
         context = {'private_key': private_key,
                    'listen_port': self.charm_config['listen-port'],
                    'peers': peers_yaml,

@@ -2,7 +2,7 @@ name: wireguard
 summary: Wireguard VPN server
 maintainer: Chris Sanders <sanders.chris@gmail.com>
 description: |
-  WireGuard® is an extremely simple yet fast and modern VPN that utilizes state-of-the-art cryptography.
+  WireGuard is an extremely simple yet fast and modern VPN that utilizes state-of-the-art cryptography.
 tags:
   # Replace "misc" with one or more whitelisted tags from this list:
   # https://jujucharms.com/docs/stable/authors-charm-metadata
