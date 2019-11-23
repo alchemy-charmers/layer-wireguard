@@ -70,7 +70,7 @@ def mock_hookenv_config(monkeypatch):
 
     def mock_config():
         cfg = {}
-        yml = yaml.load(open('./config.yaml'))
+        yml = yaml.safe_load(open('./config.yaml'))
 
         # Load all defaults
         for key, value in yml['options'].items():
