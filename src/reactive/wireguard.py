@@ -33,7 +33,7 @@ def configure_wireguard():
     set_flag('wireguard.configured')
 
 
-@when('config.changed')
+@when('config.changed', 'wireguard.installed')
 def update_config():
     host.service('stop', wh.service_name)
     wh.write_config()
