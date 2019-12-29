@@ -102,7 +102,6 @@ class WireguardHelper:
         host.service("start", self.service_name)
 
         self.configure_ports()
-        hookenv.open_port(self.charm_config["listen-port"], protocol="UDP")
 
     def configure_ports(self):
         """Configure listening ports."""
@@ -133,8 +132,12 @@ class WireguardHelper:
 
     def get_config_action(self):
         """Retrieve and return settings and key data for get-config action."""
-        with open(self.public_key_file, "r") as key:
-            public_key = key.read().strip("\n")
+        public_key = self.kv.get("public-key")
         port = (self.charm_config["listen-port"],)
         ip = hookenv.unit_public_ip()
+        log("Returning configuration for action: {}, {}, {}".format(
+            public_key,
+            port,
+            ip
+        ))
         return public_key, ip, port

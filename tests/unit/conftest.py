@@ -2,6 +2,7 @@
 """Test fixtures for the WireGuard charm."""
 import pytest
 import mock
+from charmhelpers.core import unitdata
 
 
 @pytest.fixture
@@ -22,6 +23,14 @@ def mock_hookenv_config(monkeypatch):
         return cfg
 
     monkeypatch.setattr("libwireguard.hookenv.config", mock_config)
+
+
+@pytest.fixture
+def mock_unit_db(monkeypatch):
+    """Mock the key value store."""
+    mock_kv = mock.Mock()
+    mock_kv.return_value = unitdata.Storage(path=":memory:")
+    monkeypatch.setattr("libwireguard.unitdata.kv", mock_kv)
 
 
 @pytest.fixture
@@ -119,18 +128,19 @@ def mock_subprocess_popen(monkeypatch):
 
 @pytest.fixture
 def wh(
-    tmpdir,
-    mock_hookenv_config,
-    monkeypatch,
+    mock_action_set,
     mock_charm_dir,
+    mock_close_port,
+    mock_hookenv_config,
+    mock_open_port,
+    mock_opened_ports,
     mock_render,
+    mock_service,
     mock_subprocess_check_call,
     mock_subprocess_popen,
-    mock_opened_ports,
-    mock_service,
-    mock_open_port,
-    mock_close_port,
-    mock_action_set,
+    mock_unit_db,
+    monkeypatch,
+    tmpdir,
 ):
     """Mock charm helper class."""
     import base64
