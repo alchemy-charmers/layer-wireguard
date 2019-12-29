@@ -16,4 +16,10 @@ __pycache__/
 .idea/
 
 # version data
-src/repo-info
+repo-info
+
+# reports
+report/*
+
+# Unitdb
+.unit-state.db

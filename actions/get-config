@@ -1,0 +1,12 @@
+#!/usr/local/sbin/charm-env python3
+"""Return the tunnel configuration parameters."""
+
+from libwireguard import WireguardHelper
+from charmhelpers.core import hookenv
+
+helper = WireguardHelper()
+key, ip, port = helper.get_config_action()
+if key and ip and port:
+    hookenv.action_set({"key": key, "ip": ip, "port": port})
+else:
+    hookenv.action_fail("Failed to retrieve configurtion")

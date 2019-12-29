@@ -1,8 +1,9 @@
+---
 options:
   peers:
     type: string
     default: ""
-    description: | 
+    description: |
       base64 yaml file with peer options
       See include-base64://
       Availabel options
@@ -20,7 +21,7 @@ options:
     description: "Interface address"
   forward-ip:
     type: boolean
-    default: True
+    default: true
     description: "Forward packets for clients"
   forward-dev:
     type: string
@@ -29,7 +30,11 @@ options:
   proxy-via-hostname:
     type: boolean
     default: false
-    description: "If true use fqdn with the reverse proxy, if false use ip address"
+    description: "If true use fqdn with the reverse proxy, else use ip address"
+  private-key:
+    type: string
+    default: ""
+    description: "Specify rather than generating a private key, base64 encoded"
 # Is this even used, what was it meant for?
 #  endpoint:
 #    type: string
