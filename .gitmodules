@@ -4,3 +4,6 @@
 [submodule "interfaces/interface-reverseproxy"]
 	path = interfaces/interface-reverseproxy
 	url = https://github.com/pirate-charmers/interface-reverseproxy.git
+[submodule "interfaces/interface-network-interface"]
+	path = interfaces/interface-network-interface
+	url = https://github.com/alchemy-charmers/interface-network-interface.git
