@@ -12,7 +12,7 @@ def mock_hookenv_config(monkeypatch):
 
     def mock_config():
         cfg = {}
-        yml = yaml.load(open("./config.yaml"))
+        yml = yaml.safe_load(open("./config.yaml"))
 
         # Load all defaults
         for key, value in yml["options"].items():
@@ -154,6 +154,9 @@ def wh(
     wh.cfg_file = str(tmpdir.join("/wg0.cfg"))
     wh.sysctl_file = str(tmpdir.join("99-sysctl.conf"))
     shutil.copy("./tests/unit/99-sysctl.conf", wh.sysctl_file)
+    wh.key_dir = str(tmpdir)
+    wh.private_key_file = str(tmpdir.join("/privatekey"))
+    wh.public_key_file = str(tmpdir.join("/publickey"))
 
     with open("./tests/unit/peers.yaml", "rb") as peers:
         peers_options = base64.b64encode(peers.read()).decode("utf-8")
