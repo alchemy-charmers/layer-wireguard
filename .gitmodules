@@ -1,6 +1,6 @@
 [submodule "layers/layer-version"]
 	path = layers/layer-version
-	url = git@github.com:chris-sanders/layer-version.git
+	url = https://github.com/alchemy-charmers/layer-version.git
 [submodule "interfaces/interface-reverseproxy"]
 	path = interfaces/interface-reverseproxy
 	url = https://github.com/pirate-charmers/interface-reverseproxy.git
