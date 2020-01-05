@@ -1,19 +1,20 @@
+"""Module to assist with libjuju testing."""
 import base64
 import pickle
 
 import juju
 
-# from juju.errors import JujuError
-
 
 class JujuTools:
+    """Defines helper functions of using libjuju."""
+
     def __init__(self, controller, model):
+        """Run init."""
         self.controller = controller
         self.model = model
 
     async def run_command(self, cmd, target):
-        """
-        Runs a command on a unit.
+        """Run a command on a unit.
 
         :param cmd: Command to be run
         :param unit: Unit object or unit name string
@@ -27,8 +28,7 @@ class JujuTools:
         return action.results
 
     async def remote_object(self, imports, remote_cmd, target):
-        """
-        Runs command on target machine and returns a python object of the result
+        """Run command on target machine and returns a python object of the result.
 
         :param imports: Imports needed for the command to run
         :param remote_cmd: The python command to execute
@@ -48,8 +48,7 @@ class JujuTools:
         return pickle.loads(base64.b64decode(bytes(results["Stdout"][2:-1], "utf8")))
 
     async def file_stat(self, path, target):
-        """
-        Runs stat on a file
+        """Run stat on a file.
 
         :param path: File path
         :param target: Unit object or unit name string
@@ -60,8 +59,7 @@ class JujuTools:
         return await self.remote_object(imports, python_cmd, target)
 
     async def file_contents(self, path, target):
-        """
-        Returns the contents of a file
+        """Return the contents of a file.
 
         :param path: File path
         :param target: Unit object or unit name string
@@ -71,8 +69,7 @@ class JujuTools:
         return result["Stdout"]
 
     async def service_status(self, service, target):
-        """
-        Returns status of a service on target unit
+        """Return status of a service on target unit.
 
         :param service: Name of the service
         :param target: Unit object or unit name string
@@ -82,17 +79,15 @@ class JujuTools:
         return result
 
     async def convert_config(self, config):
-        """
-        Converts config dictionary from get_config to one valid for set_config.
-        """
+        """Convert config dictionary from get_config to one valid for set_config."""
         clean_config = {}
         for key, value in config.items():
-            clean_config[key] = "{}".format(value['value'])
+            clean_config[key] = "{}".format(value["value"])
         return clean_config
 
     async def test_config(self, config, app, tests):
-        """
-        Verifies contents of files after a config change on an application.
+        """Verify contents of files after a config change on an application.
+
         Application configuration will be reset to the original value even if an
         assertion fails.
 
