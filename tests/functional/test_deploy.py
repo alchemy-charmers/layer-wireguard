@@ -104,3 +104,12 @@ async def test_file_stat(app, jujutools):
     assert stat.filemode(fstat.st_mode) == "-rw-r--r--"
     assert fstat.st_uid == 0
     assert fstat.st_gid == 0
+
+
+@pytest.mark.timeout(30)
+async def test_service_status(app, jujutools):
+    unit = app.units[0]
+    status = await jujutools.service_status("wg-quick@wg0", unit)
+    print("Service Status:\r{}".format(status["Stdout"]))
+    assert status["Code"] == "0"
+
