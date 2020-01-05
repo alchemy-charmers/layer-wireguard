@@ -90,7 +90,7 @@ class WireguardHelper:
         peers_string = base64.b64decode(self.charm_config["peers"])
         peers_yaml = yaml.safe_load(peers_string)
         context = {
-            "private_key": self.kv.get("private_key"),
+            "private_key": self.kv.get("private-key"),
             "listen_port": self.charm_config["listen-port"],
             "peers": peers_yaml,
             "address": self.charm_config["address"],
