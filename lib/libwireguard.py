@@ -88,7 +88,7 @@ class WireguardHelper:
 
         host.service('stop', self.service_name)
         peers_string = base64.b64decode(self.charm_config["peers"])
-        peers_yaml = yaml.load(peers_string)
+        peers_yaml = yaml.safe_load(peers_string)
         context = {
             "private_key": self.kv.get("private_key"),
             "listen_port": self.charm_config["listen-port"],
